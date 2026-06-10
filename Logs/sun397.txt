@@ -1,0 +1,16 @@
+Namespace(alpha=0.5, arch='ViT-B/16', batch_size=256, beta=1.0, cache_k=0.3, data_path='/root/autodl-tmp/dataset/', dataset='sun397', iters_proxy=30, iters_sinkhorn=20, logits_ratio=0.3, lr=10, shots=16, tau_i=0.04, tau_t=0.01, workers=8)
+Building transform_test
++ resize the smaller edge to 224
++ 224x224 center crop
++ to torch tensor of range [0, 1]
++ normalization (mean=[0.48145466, 0.4578275, 0.40821073], std=[0.26862954, 0.26130258, 0.27577711])
+load pre-trained model
+load data
+Reading split from /root/autodl-tmp/dataset/sun397/split_zhou_SUN397.json
+Creating a 16-shot dataset
+text descriptions for each class is : 28
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 397/397 [00:04<00:00, 89.17it/s]
+text descriptions are not equal, and minimal is :50
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 397/397 [00:07<00:00, 52.50it/s]
+accuracy with text proxy inited vision proxy: 68.24
+accuracy with prototype proxies optimized vision proxy: 72.88

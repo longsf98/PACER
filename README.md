@@ -1,11 +1,10 @@
-# PACER Supplementary Materials
+# PTCP Supplementary Materials
 
 > Submitted KBS paper: 
 > ** Towards Real-World Scenarios: A Perceive-then-Calibrate Paradigm for Zero-Shot Recognition via Vision-Language Models**
 
-Large-scale vision-language models (VLMs), such as CLIP, have established a powerful paradigm for zero-shot visual recognition by aligning images with text descriptions. However, directly applying them to downstream tasks is often hindered by the inherent modality gap. Recent state-of-the-art (SOTA) methods, represented by InMaP, attempt to bridge this gap by learning vision proxies under an ideal uniform distribution assumption. Yet, enforcing such a rigid uniform prior overlooks the inherent variability and natural skew of real-world data, inevitably distorting its intrinsic structure and compromising adaptation performance. To address this limitation, we propose PACER (Perceive And Calibrate for zEro-shot Recognition), a novel paradigm designed to dynamically adapt VLMs to arbitrary data distributions. Operating through a perceive-then-calibrate mechanism, our framework first introduces a novel Global Imbalance Index (GII) via entropy-regularized optimization, which acts as a distribution estimator to accurately measure the intrinsic data skewness. Guided by this perception, PACER explicitly disentangles the unknown dataset into uniformly distributed and imbalanced subsets, enabling the application of tailored calibration strategies. Specifically, for the uniform subset, we generate globally consistent pseudo-labels via Uniform Prior Alignment (UPA). Conversely, for the imbalanced subset, we introduce Distribution-Adaptive Proxies (DAP) to capture diverse intra-class characteristics and preserve the authentic data distribution.
-Extensive experiments across 10 benchmark datasets demonstrate that PACER consistently achieves SOTA zero-shot recognition performance. Notably, it outperforms InMaP by 4.6 across all 10 downstream datasets and by a remarkable 10 on four imbalanced datasets, firmly validating its superiority and robustness in real-world scenarios.
-![intro](PACER.png)
+Large-scale vision-language models (VLMs), such as CLIP, have established a powerful paradigm for zero-shot visual recognition by aligning images with text descriptions. However, directly applying them to downstream tasks is often hindered by the inherent modality gap. Recent state-of-the-art (SOTA) methods attempt to bridge this gap by learning vision proxies under an ideal uniform distribution assumption. Yet, enforcing such a rigid uniform prior overlooks the inherent variability and natural skew of real-world data, inevitably distorting its intrinsic structure and compromising adaptation performance. To address this limitation, we propose the Perceive-then-Calibrate Paradigm (PTCP) for zero-shot recognition, aiming to dynamically adapt VLMs to arbitrary data distributions. Operating through a perceive-then-calibrate mechanism, our framework first introduces a novel Global Imbalance Index (GII) via entropy-regularized optimization, which acts as a distribution estimator to accurately measure the intrinsic data skewness. Guided by this perception, PTCP explicitly disentangles the unknown dataset into uniformly distributed and imbalanced subsets, enabling the application of tailored calibration strategies. Specifically, for the uniform subset, we generate globally consistent pseudo-labels via Uniform Prior Alignment (UPA). Conversely, for the imbalanced subset, we introduce Distribution-Adaptive Proxies (DAP) to capture diverse intra-class characteristics and preserve the authentic data distribution. Extensive experiments across10 benchmark datasets demonstrate that PTCP consistently achieves SOTA zero-shot recognition performance. Notably, it outperforms InMaP by 4.6% across all 10 downstream datasets and by a remarkable 10% on four imbalanced datasets, firmly validating its superiority and robustness in real-world scenarios.
+![intro](PTCP.png)
 
 ## Requirements
 * Python 3.9
@@ -20,7 +19,7 @@ This code is built on top of the awesome toolbox [Dassl.pytorch](https://github.
 
 All used datasets could be prepared according to CoOp's [DATASETS.md](https://github.com/KaiyangZhou/CoOp/blob/main/DATASETS.md). Zero-shot Classification Task On the 10 datasets.
 
-| Dataset      | PACER Acc. | Log                                 | Checkpoint                                             | 
+| Dataset      | PTCP Acc. | Log                                 | Checkpoint                                             | 
 | ------------ |----------|-------------------------------------|--------------------------------------------------------| 
 | OxfordPets   | 93.1     | [Link](Logs/oxford_pets.txt)    | [Link](checkpoint/oxford_pets_image_classifier.pth)    | 
 | Flowers102   | 80.8     | [Link](Logs/oxford_flowers.txt) | [Link](checkpoint/oxford_flowers_image_classifier.pth) | 
@@ -35,13 +34,13 @@ All used datasets could be prepared according to CoOp's [DATASETS.md](https://gi
 | Average      | 73.3     |                                     |                                                        | 
 
 ## Project Structure
-- `main.py`: Main entry point file for our PACER
+- `main.py`: Main entry point file for our PTCP
 - `utils.py`: Utility function collection
 - `datasets/`: Processing modules for various datasets
 - `gpt3_prompts/` and `gpt_file_cafo/`: Includes LLM prompts
 
 ## Usage:
-PACER with pre-trained ViT-B/16
+PTCP with pre-trained ViT-B/16
 ```
 python main.py -a ViT-B/16 --data_path /path/to/DATASET --dataset DATASET
 ```
